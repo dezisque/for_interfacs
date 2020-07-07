@@ -1,19 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav>
+      <router-link to="/">Main</router-link>
+      <router-link to="/tree">Tree</router-link>
+    </nav>
+    <router-view :data="data" @updateData="updateData"></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      data: {
+        name: "root",
+        selected: true,
+        children: [
+          {
+            name: "item1",
+            selected: true,
+            children: [
+              {
+                name: "item3",
+                selected: true,
+                children: [],
+              },
+            ],
+          },
+          {
+            name: "item2",
+            selected: true,
+            children: [],
+          },
+        ],
+      },
+    };
+  },
+  methods: {
+    updateData(data) {
+      this.data = data;
+    },
+  },
+};
 </script>
 
 <style>
@@ -24,5 +53,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+nav a {
+  padding: 20px;
 }
 </style>
