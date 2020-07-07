@@ -11,9 +11,11 @@
         ></TreeFolder>
       </ul>
     </li>
-    <p v-else-if="folder.selected"> <!-- иначе - обычный список -->
-      <input type="checkbox" v-model="folder.selected" />
-      {{ folder.name }}
+    <p v-else> <!-- иначе - обычный список -->
+      <span v-if="folder.selected">
+        <input type="checkbox" v-model="folder.selected" />
+        {{ folder.name }}
+      </span>
       <TreeFolder
         v-for="(child, index) in folder.children"
         :type="type"
